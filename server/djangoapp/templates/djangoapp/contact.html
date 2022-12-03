@@ -1,44 +1,84 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealership Review - Contact Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 
-{% block content %}
-    <div class="container">
-        <h1 class="heading-txt" style="font-size: 2em; margin-bottom: 3%; text-align: center;">Contact</h1>
-        <div style="margin-top: 5%;display: flex; justify-content: space-evenly; flex-wrap: wrap;">
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Contact Information</div>
-            <div class="card-body">
-                <h5 class="card-title">Customer Care</h5>
-                <p class="card-text">Name: Michael F. Mann </br> Mobile: 41373734689 </br> Email: michael@dealership.com </p>
+</head>
+
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'djangoapp:index' %}"> Best Car's Dealership Review </a>
+                    <a class="navbar-brand" href="{% url 'djangoapp:about' %}">About us</a>
+                    <a class="navbar-brand" href="{% url 'djangoapp:contact' %}">Contact us</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                        <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <form class="form-inline" action="{% url 'djangoapp:registration' %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Username" name="username" >
+                                <input type="password" class="form-control" placeholder="Username" name="psw" >
+                                <button class="btn btn-primary" type="submit">Login</button>
+                                <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                            </div>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
-        </div>
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Contact Information</div>
-            <div class="card-body">
-                <h5 class="card-title">Lead Salesman</h5>
-                <p class="card-text">Name: Bobby B. Grosse </br> Mobile: 125678892 </br> Email: bobby@dealership.com </p>
+        </nav>
+                
+                <html>
+                    <h2>Dealership Contact Details </h2>
+                    
+                    </html>
+            <div class="container-fluid">
+                <form class ="form-group-horizontal">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Dealership Address</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Come visit us:</h6>
+                          <p class="card-text">123 Hidden Dealership Village
+                            Konoha, CA 98852</p>
+                            <a href="{% url 'djangoapp:registration' %}" class="card-link">Sign up to give a review</a>
+                          <a href="{% url 'djangoapp:about' %}" class="card-link">About Us</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Have Questions</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">give us a call</h6>
+                          <p class="card-text">phone:888-888-8888</p>
+                          <a href="{% url 'djangoapp:registration' %}" class="card-link">Sign up to give a review</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">Email</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">Send us an email</h6>
+                          <p class="card-text">e-mail:dealersdeal@dealership.com</p>
+                          <a href="{% url 'djangoapp:registration' %}" class="card-link">Sign up to give a review</a>
+                        </div>
+                      </div>
+                </form>
             </div>
-        </div>
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Contact Information</div>
-            <div class="card-body">
-                <h5 class="card-title">Customer Care</h5>
-                <p class="card-text">Name: Justin Fields </br> Mobile: 557844332 </br> Email: justin@dealership.com </p>
-            </div>
-        </div>
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Contact Information</div>
-            <div class="card-body">
-                <h5 class="card-title">Customer Care</h5>
-                <p class="card-text">Name: Jessica Bunnie </br> Mobile: 833834562 </br> Email: jess@dealership.com </p>
-            </div>
-        </div>
-                <div class="card text-white bg-dark mb-2" style="max-width: 40rem;">
-            <div class="card-header">Visiting Address</div>
-            <div class="card-body">
-                <h5 class="card-text">Best Cars HQ</br></br>Sidewinder Avenue 369, Austin, TX, US</br></br></h5>
-                <p class="card-text">Phone: 003721435476 </br> Email: info@dealership.com </p>
-            </div>
-        </div>
-        </div>
-    </div>
-{% endblock %}
+
+    </body>
+
+</html>
